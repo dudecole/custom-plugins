@@ -1,10 +1,8 @@
 - name: Taking a stat of the '/' to see what volumes exist
   hosts: all
-  become: true
 
   vars:
     shared_volume_path: "/ansible/please-delete-me.txt"
-    become_user: root
   
   tasks:
     - name: List dir contents
@@ -23,12 +21,12 @@
         force: true
       register: touch_results
       ignore_errors: true
+        #     delegate_to: localhost
           #        force: true
           #        follow: false
           #        owner: nobody
           #        group: nobody
           #        mode: '0777'
-          #      delegate_to: localhost
           
     - name: debug touch results 
       debug:
