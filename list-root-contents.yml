@@ -11,16 +11,23 @@
       debug:
         msg: "{{ inventory_hostname }}"
 
-    - name: List dir contents - ONE LAST TIME
+    - name: List dir contents
       command: | 
-         ls -al;  
-         pwd
+         ls -al
       register: dir_contents
 
-    - name: Stat return register - ONE LAST TIME
+    - name: Stat return register
       debug:
         var: "{{ dir_contents }}"
 
+    - name: List dir contents - ONE LAST TIME
+      command: | 
+         pwd
+      register: working_dir
+
+    - name: Stat return register - ONE LAST TIME
+      debug:
+        var: "{{ working_dir }}"
         #    - name: try the file module now
         #      file:
         #        path: "{{ shared_volume_path }}" 
