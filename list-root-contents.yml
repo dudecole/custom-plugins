@@ -15,6 +15,7 @@
         path: "{{ shared_volume_path }}" 
         state: touch
         force: true
+        follow: false
       delegate_to: localhost
         #  become_user: true
 
