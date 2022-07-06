@@ -3,13 +3,13 @@
   become: true
 
   vars:
-    shared_volume_path: "/ansible/{{ inventory_hostname }}"
+    shared_volume_path: "/ansible/please-delete-me.txt"
     become_user: root
   
   tasks:
     - name: List dir contents
       command: | 
-         ls -al
+         ls -al /
       register: dir_contents
 
     - name: Stat return register
