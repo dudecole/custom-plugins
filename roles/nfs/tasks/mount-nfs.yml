@@ -18,9 +18,9 @@
     state: absent #"{{ mount_state }}" #mounted
     boot: yes
     fstype: "{{ mount_type }}" #nfs
-  delegate_to: "{{ item }}"
   register: mount_results
-  loop: "{{ groups['execution_nodes'] }}"
+#  delegate_to: "{{ item }}"
+#  loop: "{{ groups['execution_nodes'] }}"
 
 #- name: debug mount_results register
 #  debug:

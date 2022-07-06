@@ -1,13 +1,14 @@
-
 # TODO:
 # - Create a role for file creation on NFS 
 # - Update documentation
-# - Why is localhost running on tasks delegated to [execution_nodes] inventory group
-#   - hosts file messed up?
-#
+# - dynamic file name of some sort
+#   - looping on file creations and/or directory creations in NFS
+# - validate the fileshare permissions from the mounted volume in the 
+#   EE Node OS.  Seems the 'awx' user needs 'rwx' perms to that newly
+#   mounted volume/folder...  Double check this..
 
 - name: Prepare NFS Connection for Execution Environment Nodes 
-  hosts: all
+  hosts: execution_nodes
   gather_facts: no
 
   collections: 

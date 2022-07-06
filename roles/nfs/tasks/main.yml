@@ -13,8 +13,8 @@
     state: present
     use_backend: dnf
   register: yum_results
-  delegate_to: "{{ item }}"
-  loop: "{{ groups['execution_nodes'] }}"
+#  delegate_to: "{{ item }}"
+#  loop: "{{ groups['execution_nodes'] }}"
 
 
 # import task to mount nfs volume to the EE node(s)
