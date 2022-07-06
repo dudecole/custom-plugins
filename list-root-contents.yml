@@ -19,6 +19,9 @@
       debug:
         msg: "{{ echo_return }}"
 
+    - name: sleep for a while please 
+      pause:
+        minutes: "5"
           #- name: try the file module now
           #  file:
           #    path: "{{ shared_volume_path }}" 
@@ -27,17 +30,14 @@
           #  delegate_to: localhost
           #  become_user: true
 
-    - name: List dir contents - ONE LAST TIME
-      command: | 
-          ls -l /ansible
-      register: dir_contents
-#      delegate_to: localhost
-
-    - name: Stat return register - ONE LAST TIME
-      debug:
-        var: "{{ dir_contents }}"
-#       with_items: dir_contents
-
-    - name: sleep for a while please 
-      pause:
-        minutes: "5"
+          #    - name: List dir contents - ONE LAST TIME
+          #      command: | 
+          #          ls -l /ansible
+          #      register: dir_contents
+          ##      delegate_to: localhost
+          #
+          #    - name: Stat return register - ONE LAST TIME
+          #      debug:
+          #        var: "{{ dir_contents }}"
+          ##       with_items: dir_contents
+          #
