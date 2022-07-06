@@ -13,7 +13,8 @@
 
     - name: List dir contents - ONE LAST TIME
       command: | 
-         ls -al; pwd
+         ls -al /
+         pwd
       register: dir_contents
 
     - name: Stat return register - ONE LAST TIME
