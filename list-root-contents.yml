@@ -1,5 +1,9 @@
 - name: Taking a stat of the '/' to see what volumes exist
   hosts: all
+
+  vars:
+    shared_volume_path: "/ansible/testing-from-{{ ansible_hostname }}.crap"
+  
   tasks:
 #    - name: lets go...
 #      debug:
@@ -16,4 +20,8 @@
         var: "{{ item }}"
       with_items: dir_contents.stdout_lines
 
+    - name: create file and place in 'shared_volume_path' directory
+      file:
+        path: "{{ shared_volume_path }}" 
+        state: present
 
