@@ -11,26 +11,26 @@
 
 
     - name: create file and place in 'shared_volume_path' directory
-      shell: |
-         echo "something - from aap " > /ansible/cruddy-number-99.txt
+      command: |
+         echo "something - from aap " > "{{ shared_volume_path }}"
       register: echo_return
 
     - name: debug echo 
       debug:
         msg: "{{ echo_return }}"
 
-    - name: try the file module now
-      file:
-        path: "{{ shared_volume_path }}" 
-        state: touch
-        force: true
-      delegate_to: localhost
-      become_user: true
+          #- name: try the file module now
+          #  file:
+          #    path: "{{ shared_volume_path }}" 
+          #    state: touch
+          #    force: true
+          #  delegate_to: localhost
+          #  become_user: true
 
-    - name: List dir contents - ONE LAST TIME
-      command: | 
-          ls -l /ansible
-      register: dir_contents_2
+          #- name: List dir contents - ONE LAST TIME
+          #  command: | 
+          #      ls -l /ansible
+          #  register: dir_contents_2
         #      delegate_to: localhost
 
         #    - name: Stat return register - ONE LAST TIME
