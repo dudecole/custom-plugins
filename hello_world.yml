@@ -1,7 +1,16 @@
-- name: Hello World Sample
+- name: Taking a stat of the '/' to see what volumes exist
   hosts: all
   tasks:
     - name: Hello Message
       debug:
         msg: "Hello World!"
+
+    - name: Hello Message
+      stat:
+        path: "/"
+      register: stat_return
+        
+    - name: Stat return register
+      debug:
+        msg: "{{ stat_return }}"
 
