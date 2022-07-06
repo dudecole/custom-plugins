@@ -17,6 +17,8 @@
         force: true
         follow: false
         owner: nobody
+        group: nobody
+        mode: '0777'
       delegate_to: localhost
         #  become_user: true
 
