@@ -7,51 +7,53 @@
     become_user: root
   
   tasks:
-    - name: lets go...
+    - name: try the file module now
+      file:
+        path: "{{ shared_volume_path }}" 
+        state: touch
+      register: touch_results
+          #        force: true
+          #        follow: false
+          #        owner: nobody
+          #        group: nobody
+          #        mode: '0777'
+          #      delegate_to: localhost
+    - name: debug touch results 
       debug:
-        msg: "{{ inventory_hostname }}"
+        var: "{{ touch_results }}"
 
     - name: List dir contents
       command: | 
-         ls -al
+          ls -l /ansible
       register: dir_contents
       delegate_to: localhost
-
-    - name: Stat return register
-      debug:
-        var: "{{ dir_contents }}"
-
-    - name: List dir contents - ONE LAST TIME
-      command: | 
-         pwd
-      register: working_dir
-      delegate_to: localhost
-
-    - name: Stat return register - ONE LAST TIME
-      debug:
-        var: "{{ working_dir }}"
-        #    - name: try the file module now
-        #      file:
-        #        path: "{{ shared_volume_path }}" 
-        #        state: touch
-        #        force: true
-        #        follow: false
-        #        owner: nobody
-        #        group: nobody
-        #        mode: '0777'
-        #      delegate_to: localhost
-        #        #  become_user: true
-        #
-        #    - name: List dir contents - ONE LAST TIME
-        #      command: | 
-        #          ls -l /ansible
-        #      register: dir_contents
-        #      delegate_to: localhost
-        #
-        #    - name: Stat return register - ONE LAST TIME
-        #      debug:
-        #        var: "{{ dir_contents }}"
 
     - name: sleep for a while please 
       pause:
         minutes: "5"
+
+
+
+    #    - name: lets go...
+    #      debug:
+    #        msg: "{{ inventory_hostname }}"
+    #
+          #    - name: List dir contents
+          #      command: | 
+          #         ls -al
+          #      register: dir_contents
+          #      delegate_to: localhost
+          #
+          #    - name: Stat return register
+          #      debug:
+          #        var: "{{ dir_contents }}"
+          #
+          #    - name: List dir contents - ONE LAST TIME
+          #      command: | 
+          #         pwd
+          #      register: working_dir
+          #      delegate_to: localhost
+          #
+          #    - name: Stat return register - ONE LAST TIME
+          #      debug:
+          #        var: "{{ working_dir }}"
