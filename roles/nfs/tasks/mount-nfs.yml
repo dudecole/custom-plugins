@@ -1,0 +1,10 @@
+---
+- name: run the mount command or mount module??
+  command: |
+        ls -al 
+  register: list_results
+
+- name: debug register
+  debug:
+    msg: | 
+      "List Results: {{ list_results }}"

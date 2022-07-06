@@ -1,0 +1,13 @@
+# default variable values
+---
+
+# list of packages required for mounting nfs volume
+nfs_packages: 
+  - rpcbind
+  - nfs-utils
+
+
+# volume information
+shared_volume: "/ansible/"
+shared_volume_file: "delete-me-{{ 101 |random(start=1, step=10) }}.txt"
+shared_file_path: "{{ shared_volume }}{{ shared_volume_file }}"

@@ -1,36 +1,15 @@
 - name: Taking a stat of the '/' to see what volumes exist
-  hosts: all
+  hosts: localhost #192.168.59.111
 
-  vars:
-    shared_volume_path: "/ansible/please-delete-me.txt"
-  
+    #  vars:
+    #    shared_volume: "/ansible/"
+    #    shared_volume_file: "delete-me-{{ 101 |random(start=1, step=10) }}.txt"
+    #    shared_file_path: "{{ shared_volume }}{{ shared_volume_file }}"
+
   tasks:
-    - name: List dir contents
-      command: | 
-         ls -al /
-      register: dir_contents
-
-    - name: Stat return register
-      debug:
-        msg: "{{ dir_contents }}"
-
-    - name: try the file module now
-      file:
-        path: "/ansible/dude-wtf-is-happening.txt"
-        state: touch
-        force: true
-      register: touch_results
-      ignore_errors: true
-        #     delegate_to: localhost
-          #        force: true
-          #        follow: false
-          #        owner: nobody
-          #        group: nobody
-          #        mode: '0777'
-          
-    - name: debug touch results 
-      debug:
-        msg: "{{ touch_results }}"
+    - name: include role for preparing EE nodes
+      include_role:
+        name: nfs
 
     - name: List dir contents
       command: | 
@@ -40,6 +19,34 @@
     - name: sleep for a while please 
       pause:
         minutes: "5"
+
+
+          #    - name: List dir contents
+          #      command: | 
+          #         ls -al /
+          #      register: dir_contents
+          #
+          #    - name: Stat return register
+          #      debug:
+          #        msg: "{{ dir_contents }}"
+          #
+          #    - name: try the file module now
+          #      file:
+          #        path: "/ansible/dude-wtf-is-happening.txt"
+          #        state: touch
+          #        force: true
+          #      register: touch_results
+          #      ignore_errors: true
+          #        #     delegate_to: localhost
+          #          #        force: true
+          #          #        follow: false
+          #          #        owner: nobody
+          #          #        group: nobody
+          #          #        mode: '0777'
+          #          
+          #    - name: debug touch results 
+          #      debug:
+          #        msg: "{{ touch_results }}"
 
 
 

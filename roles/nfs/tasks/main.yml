@@ -1,0 +1,21 @@
+---
+- name: Assert some variables are defined
+  assert:
+    that:
+      - nfs_packages is defined
+    fail_msg: '"nfs_packages" is not defined'
+    success_msg: 'variables are ready to go'
+
+- name: yum install NFS client(s)
+  yum:
+    name: "{{ nfs_packages }}"
+    state: present
+    use_backend: dnf
+  register: yum_results
+
+- name: Debug `yum_results` register
+  debug:
+    msg: "{{ yum_results }}"
+
+- name: include task for running mount command
+  include_tasks: mount-nfs.yml
