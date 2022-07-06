@@ -1,0 +1,19 @@
+- name: Taking a stat of the '/' to see what volumes exist
+  hosts: all
+  tasks:
+#    - name: lets go...
+#      debug:
+#        msg: "Hello World!"
+
+    - name: List dir contents
+      command: | 
+          ls -l /
+      register: dir_contents
+      delegate_to: localhost
+        
+    - name: Stat return register
+      debug:
+        var: "{{ item }}"
+      with_items: dir_contents.stdout_lines
+
+
