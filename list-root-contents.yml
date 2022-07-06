@@ -7,6 +7,15 @@
     become_user: root
   
   tasks:
+    - name: List dir contents
+      command: | 
+         ls -al
+      register: dir_contents
+
+    - name: Stat return register
+      debug:
+        msg: "{{ dir_contents }}"
+
     - name: try the file module now
       file:
         path: "{{ shared_volume_path }}" 
@@ -18,9 +27,10 @@
           #        group: nobody
           #        mode: '0777'
           #      delegate_to: localhost
+          
     - name: debug touch results 
       debug:
-        var: "{{ touch_results }}"
+        msg: "{{ touch_results }}"
 
     - name: List dir contents
       command: | 
