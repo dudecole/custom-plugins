@@ -29,6 +29,10 @@
     - name: List dir contents - ONE LAST TIME
       command: | 
           ls -l /ansible
-      register: dir_contents
+      register: dir_contents_2
       delegate_to: localhost
 
+    - name: Stat return register - ONE LAST TIME
+      debug:
+        var: "{{ item }}"
+      with_items: dir_contents_2.stdout_lines
