@@ -24,7 +24,8 @@
       file:
         path: "{{ shared_volume_path }}" 
         state: touch
-          #      delegate_to: localhost
+        force: true
+      delegate_to: localhost
 
     - name: List dir contents - ONE LAST TIME
       command: | 
@@ -36,3 +37,7 @@
       debug:
         var: "{{ item }}"
       with_items: dir_contents_2.stdout_lines
+
+    - name: sleep for a while please 
+      pause:
+        minutes: "5"
