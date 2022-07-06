@@ -18,9 +18,11 @@
 
     - name: try the file module now
       file:
-        path: "{{ shared_volume_path }}" 
+        path: "/ansible/dude-wtf-is-happening.txt"
         state: touch
+        force: true
       register: touch_results
+      ignore_errors: true
           #        force: true
           #        follow: false
           #        owner: nobody
