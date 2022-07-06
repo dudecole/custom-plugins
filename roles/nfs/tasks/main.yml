@@ -6,16 +6,17 @@
     fail_msg: '"nfs_packages" is not defined'
     success_msg: 'variables are ready to go'
 
-- name: yum install NFS client(s)
+# Install NFS packs on EE nodes
+- name: yum install NFS client and reqs
   yum:
     name: "{{ nfs_packages }}"
     state: present
     use_backend: dnf
   register: yum_results
+  delegate_to: "{{ item }}"
+  loop: "{{ groups['execution_nodes'] }}"
 
-- name: Debug `yum_results` register
-  debug:
-    msg: "{{ yum_results }}"
 
+# import task to mount nfs volume to the EE node(s)
 - name: include task for running mount command
   include_tasks: mount-nfs.yml
