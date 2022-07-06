@@ -9,23 +9,23 @@
 #      debug:
 #        msg: "Hello World!"
 
-    - name: List dir contents
-      command: | 
-          ls -l /
-      register: dir_contents
-      delegate_to: localhost
-        
-    - name: Stat return register
-      debug:
-        var: "{{ item }}"
-      with_items: dir_contents.stdout_lines
 
     - name: create file and place in 'shared_volume_path' directory
+      shell: |
+         echo "something - from aap " > /ansible/cruddy-number-99.txt
+      register: echo_return
+
+    - name: debug echo 
+      debug:
+        msg: "{{ echo_return }}"
+
+    - name: try the file module now
       file:
         path: "{{ shared_volume_path }}" 
         state: touch
         force: true
-          #      delegate_to: localhost
+      delegate_to: localhost
+      become_user: true
 
     - name: List dir contents - ONE LAST TIME
       command: | 
@@ -33,10 +33,10 @@
       register: dir_contents_2
         #      delegate_to: localhost
 
-    - name: Stat return register - ONE LAST TIME
-      debug:
-        var: "{{ item }}"
-      with_items: dir_contents_2.stdout_lines
+        #    - name: Stat return register - ONE LAST TIME
+        #      debug:
+        #        var: "{{ item }}"
+        #      with_items: dir_contents_2.stdout_lines
 
     - name: sleep for a while please 
       pause:
