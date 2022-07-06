@@ -23,7 +23,7 @@
     - name: create file and place in 'shared_volume_path' directory
       file:
         path: "{{ shared_volume_path }}" 
-        state: file
+        state: touch
       register: file_create_results
 
     - name: Stat return register
