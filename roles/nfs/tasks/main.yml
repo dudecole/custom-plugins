@@ -8,7 +8,7 @@
 
 # Install NFS packs on EE nodes
 - name: yum install NFS client and reqs
-  yum:
+  dnf:
     name: "{{ nfs_packages }}"
     state: present
   register: yum_results
