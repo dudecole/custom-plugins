@@ -9,7 +9,7 @@
 #   mounted volume/folder...  Double check this..
 
 - name: Prepare NFS Connection for Execution Environment Nodes 
-  hosts: execution_nodes
+  hosts: all
   gather_facts: no
 
   collections: 
