@@ -25,7 +25,7 @@
         path: "{{ shared_volume_path }}" 
         state: touch
         force: true
-      delegate_to: localhost
+          #      delegate_to: localhost
 
     - name: List dir contents - ONE LAST TIME
       command: | 
