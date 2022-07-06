@@ -2,7 +2,7 @@
   hosts: all
 
   vars:
-    shared_volume_path: "/ansible/testing-from-{{ ansible_hostname }}.crap"
+    shared_volume_path: "/ansible/testing-from-AAP-yep-it-worked.crap"
   
   tasks:
 #    - name: lets go...
@@ -24,9 +24,11 @@
       file:
         path: "{{ shared_volume_path }}" 
         state: touch
-      register: file_create_results
+      delegate_to: localhost
 
-    - name: Stat return register
-      debug:
-        var: "{{ file_create_results }}"
-#      with_items: dir_contents.stdout_lines
+    - name: List dir contents - ONE LAST TIME
+      command: | 
+          ls -l /ansible
+      register: dir_contents
+      delegate_to: localhost
+
