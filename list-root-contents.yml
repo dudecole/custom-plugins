@@ -1,4 +1,5 @@
 # TODO:
+# - Test from an EE image since testing was local using a-core..
 # - Create a role for file creation on NFS 
 # - Update documentation
 # - dynamic file name of some sort
