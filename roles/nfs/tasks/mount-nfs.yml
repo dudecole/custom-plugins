@@ -14,15 +14,9 @@
   ansible.posix.mount:
     src: "{{ nfs_export_path }}" #192.168.56.12:/mnt/nfs_shares/docs
     path: "{{ nfs_shared_volume }}" #/ansible
-    opts: "{{ nfs_mount_opts }}" #rw,sync,hard #,secontext='..'
+    opts: "{{ nfs_mount_opts }}" #rw,sync,hard
     state: "{{ mount_state }}" #mounted
     boot: yes
     fstype: "{{ mount_type }}" #nfs
   register: mount_results
-#  delegate_to: "{{ item }}"
-#  loop: "{{ groups['execution_nodes'] }}"
 
-#- name: debug mount_results register
-#  debug:
-#    msg: | 
-#      "Mount Results: {{ mount_results }}"

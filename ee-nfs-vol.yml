@@ -26,13 +26,3 @@
         name: nfs
         tasks_from: file-create.yml 
 
-
-#    - name: List dir contents
-#      command: | 
-#          ls -l /ansible
-#      register: dir_contents
-#
-#    - name: sleep for a while please 
-#      pause:
-#        minutes: "5"
-

@@ -1,3 +1,4 @@
+#<TODO: create/include_tasks for nfs_packages checks>
 ---
 - name: Assert some variables are defined
   assert:
@@ -12,9 +13,6 @@
     name: "{{ nfs_packages }}"
     state: present
   register: yum_results
-#  delegate_to: "{{ item }}"
-#  loop: "{{ groups['execution_nodes'] }}"
-
 
 # import task to mount nfs volume to the EE node(s)
 - name: include task for running mount command
