@@ -20,16 +20,11 @@
       include_role:
         name: nfs
 
-    - name: try the file module now
-      file:
-        path: "/ansible/dude-wtf-is-happening.txt"
-        state: touch
-        force: true
-      register: touch_results
+    - name: include role for creating files/directories 
+      include_role:
+        name: nfs
+        tasks_from: file-create.yml 
 
-    - name: debug touch results 
-      debug:
-        msg: "{{ touch_results }}"
 
 #    - name: List dir contents
 #      command: | 
