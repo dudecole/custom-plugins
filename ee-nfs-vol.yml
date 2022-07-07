@@ -14,13 +14,14 @@
 
   collections: 
     - ansible.posix.mount
+    - awx.awx
 
   tasks:
     - name: include role for preparing EE nodes
       include_role:
         name: nfs
 
-    - name: include role for creating files/directories 
+    - name: include role for creating dummy files/directories 
       include_role:
         name: nfs
         tasks_from: file-create.yml 
