@@ -1,9 +1,5 @@
 # TODO:
-# - Test from an EE image since testing was local using a-core..
-# - Create a role for file creation on NFS 
 # - Update documentation
-# - dynamic file name of some sort
-#   - looping on file creations and/or directory creations in NFS
 # - validate the fileshare permissions from the mounted volume in the 
 #   EE Node OS.  Seems the 'awx' user needs 'rwx' perms to that newly
 #   mounted volume/folder...  Double check this..
