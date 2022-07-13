@@ -1,0 +1,15 @@
+# playbook to install an nfs server. Target group
+# is NFS group in the inventory
+---
+- hosts: all
+
+  tasks: 
+  - name: include role to install nfs server
+    include_role:
+      name: nfs
+      tasks_from: nfs-server-install.yml
+      
+  - name: include role to configure nfs export 
+    include_role:
+      name: nfs
+      tasks_from: nfs-server-export.yml

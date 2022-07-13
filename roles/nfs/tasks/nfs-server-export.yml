@@ -1,0 +1,27 @@
+---
+- name: assert the export settings are defined
+  assert:
+    that: export_settings is defined
+    fail_msg: "'export_settings' is not defined"
+
+- name: create directory on NFS server
+  file: 
+    state: directory
+    path: "{{ nfs_server_mount }}"
+
+
+- name: copy over the export settings or run exportcli cmd 
+  ansible.builtin.copy:
+    dest: /etc/exports
+    content: "{{ export_settings }}" 
+  register: export_copy
+
+- name: run exportfs command
+  command: "exportfs -rav"
+  register: command_exportfs
+
+- name: debug some registers
+  debug:
+    msg: 
+      - "{{ export_copy }}"
+      - "{{ command_exportfs }}"

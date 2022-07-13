@@ -10,13 +10,16 @@ nfs_packages:
   - nfs-utils
   - showmount #for troubleshooting via commandline
 
+
 ##################
 #NFS server info
 ################## 
-nfs_server_address: 192.168.56.12 #"Ip.Add.Re.ss"
+nfs_server_address: 192.168.56.11 #"Ip.Add.Re.ss"
 nfs_server_mount: "/mnt/nfs_shares/docs"
 nfs_export_path: "{{ nfs_server_address }}:{{ nfs_server_mount }}"
 
+export_settings: "{{ nfs_server_mount }} *(rw,sync,no_root_squash,insecure)"
+    
 ##################
 #Mount information
 ################## 

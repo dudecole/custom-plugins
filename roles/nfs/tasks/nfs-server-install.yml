@@ -1,0 +1,42 @@
+---
+- name: Assert the required packs variable is defined
+  assert: 
+    that: nfs_packages is defined
+    msg: "'nfs_packages' is not defined"
+
+- name: Yum update all before deploying NFS Server 
+  ansible.builtin.yum:                                                         
+    name: "*"
+    state: latest
+  register: package_updates
+  when: 'ansible_distribution != "Ubuntu"'
+
+- name: Deploy Packs required for an NFS Server
+  ansible.builtin.yum: 
+    name: "{{ nfs_packages }}"
+    state: present
+  register: package_results
+  when: 'ansible_distribution != "Ubuntu"'
+
+- name: Enable and start nfs-server 
+  ansible.builtin.service: 
+    name: nfs-server
+    enabled: yes
+    state: started
+
+- name: Yum update all before deploying NFS Server 
+  ansible.builtin.apt:                                                         
+    name: "*"
+    state: latest
+  register: package_updates
+  when: 'ansible_distribution == "Ubuntu"'
+
+- name: Deploy Packs required for an NFS Server
+  apt: 
+    name: "{{ nfs_packages }}"
+    state: present
+  register: package_results 
+  when: 'ansible_distribution == "Ubuntu"'
+
+
+

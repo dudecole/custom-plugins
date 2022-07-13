@@ -6,6 +6,7 @@
     force: yes 
   with_sequence: count=5
   register: dir_results
+  become: yes
 
 #- name: debug the directory results
 #  debug:
@@ -18,6 +19,7 @@
     force: yes 
   with_sequence: count=5
   register: file_results
+  become: yes
 
 #- name: debug the file results
 #  debug:
